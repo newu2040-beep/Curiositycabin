@@ -1,0 +1,1844 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="Sakura Ink" data-mode="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CuriosityCabin | Ask everything. Know anything.</title>
+    <!-- Made with love by Rahul Shah -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@400;700&family=Noto+Sans+JP:wght@400;700&family=Playfair+Display:ital,wght@0,600;0,700;0,800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style id="app-styles">
+        :root {
+            /* Font Families */
+            --font-sans: 'Plus Jakarta Sans', system-ui, sans-serif;
+            --font-serif: 'Playfair Display', Georgia, serif;
+            --font-jp: 'Noto Sans JP', sans-serif;
+            --font-dev: 'Noto Sans Devanagari', sans-serif;
+            
+            /* Structural & Manga Manga Aesthetic */
+            --border-width: 2px;
+            --border-width-thick: 4px;
+            --radius-sm: 8px;
+            --radius-md: 16px;
+            --radius-lg: 24px;
+            --radius-pill: 9999px;
+            --shadow-sm: 2px 2px 0px rgba(0,0,0,0.8);
+            --shadow-md: 4px 4px 0px rgba(0,0,0,0.8);
+            --shadow-lg: 6px 6px 0px rgba(0,0,0,0.8);
+            --spacing-xs: 4px;
+            --spacing-sm: 8px;
+            --spacing-md: 16px;
+            --spacing-lg: 24px;
+            --spacing-xl: 32px;
+            --spacing-2xl: 48px;
+            
+            /* Z-Indices */
+            --z-nav: 100;
+            --z-dropdown: 200;
+            --z-overlay: 300;
+            --z-modal: 400;
+            --z-toast: 500;
+        }
+
+        /* Sakura Ink (Default) */
+        html[data-theme="Sakura Ink"][data-mode="light"] {
+            --primary: #F2B5C5; --accent: #E8829A; --surface: #FFF7F9;
+            --text-main: #2D2426; --text-muted: #6B5B5E; --border: #2D2426;
+            --bg: #FFF0F4; --halftone: rgba(232, 130, 154, 0.1);
+        }
+        html[data-theme="Sakura Ink"][data-mode="dark"] {
+            --primary: #8A4F5E; --accent: #E8829A; --surface: #1A1315;
+            --text-main: #FFF7F9; --text-muted: #B3A0A4; --border: #FFF7F9;
+            --bg: #120D0E; --halftone: rgba(232, 130, 154, 0.05);
+            --shadow-sm: 2px 2px 0px rgba(255,255,255,0.2);
+            --shadow-md: 4px 4px 0px rgba(255,255,255,0.2);
+        }
+        
+        /* Matcha Scroll */
+        html[data-theme="Matcha Scroll"][data-mode="light"] {
+            --primary: #B5C9A1; --accent: #7A9E6E; --surface: #F4F7F0;
+            --text-main: #242A20; --text-muted: #5D6B53; --border: #242A20;
+            --bg: #EEF3E9; --halftone: rgba(122, 158, 110, 0.1);
+        }
+        html[data-theme="Matcha Scroll"][data-mode="dark"] {
+            --primary: #4F5E41; --accent: #7A9E6E; --surface: #151A12;
+            --text-main: #F4F7F0; --text-muted: #9EAF90; --border: #F4F7F0;
+            --bg: #0D120B; --halftone: rgba(122, 158, 110, 0.05);
+            --shadow-sm: 2px 2px 0px rgba(255,255,255,0.2);
+            --shadow-md: 4px 4px 0px rgba(255,255,255,0.2);
+        }
+
+        /* Indigo Dojo */
+        html[data-theme="Indigo Dojo"][data-mode="light"] {
+            --primary: #7B9EC9; --accent: #3D5A8A; --surface: #F0F4FA;
+            --text-main: #141F2D; --text-muted: #4B6280; --border: #141F2D;
+            --bg: #E6EEF7; --halftone: rgba(61, 90, 138, 0.1);
+        }
+        html[data-theme="Indigo Dojo"][data-mode="dark"] {
+            --primary: #324A6E; --accent: #5C87C7; --surface: #0E121B;
+            --text-main: #F0F4FA; --text-muted: #8AA2C2; --border: #F0F4FA;
+            --bg: #090B10; --halftone: rgba(92, 135, 199, 0.05);
+            --shadow-sm: 2px 2px 0px rgba(255,255,255,0.2);
+            --shadow-md: 4px 4px 0px rgba(255,255,255,0.2);
+        }
+
+        /* Yoru Neon */
+        html[data-theme="Yoru Neon"][data-mode="light"] {
+            --primary: #C4A8F2; --accent: #9B6FE8; --surface: #F8F5FE;
+            --text-main: #1A1226; --text-muted: #625080; --border: #1A1226;
+            --bg: #F0E8FB; --halftone: rgba(155, 111, 232, 0.1);
+        }
+        html[data-theme="Yoru Neon"][data-mode="dark"] {
+            --primary: #5A358C; --accent: #B190F0; --surface: #12101A;
+            --text-main: #F8F5FE; --text-muted: #A898C7; --border: #F8F5FE;
+            --bg: #0B0A10; --halftone: rgba(177, 144, 240, 0.05);
+            --shadow-sm: 2px 2px 0px rgba(255,255,255,0.2);
+            --shadow-md: 4px 4px 0px rgba(255,255,255,0.2);
+        }
+
+        /* Yuzu Pop */
+        html[data-theme="Yuzu Pop"][data-mode="light"] {
+            --primary: #F7D080; --accent: #D4A017; --surface: #FFFBF0;
+            --text-main: #2E2512; --text-muted: #806A33; --border: #2E2512;
+            --bg: #FFF4DB; --halftone: rgba(212, 160, 23, 0.1);
+        }
+        html[data-theme="Yuzu Pop"][data-mode="dark"] {
+            --primary: #8F6A0F; --accent: #F0C446; --surface: #1A160A;
+            --text-main: #FFFBF0; --text-muted: #C4A860; --border: #FFFBF0;
+            --bg: #100E06; --halftone: rgba(240, 196, 70, 0.05);
+            --shadow-sm: 2px 2px 0px rgba(255,255,255,0.2);
+            --shadow-md: 4px 4px 0px rgba(255,255,255,0.2);
+        }
+
+        /* Sumi Ghost */
+        html[data-theme="Sumi Ghost"][data-mode="light"] {
+            --primary: #E8E4E0; --accent: #3A3530; --surface: #F5F3F0;
+            --text-main: #1C1A18; --text-muted: #736C66; --border: #1C1A18;
+            --bg: #EAE6E1; --halftone: rgba(28, 26, 24, 0.1);
+        }
+        html[data-theme="Sumi Ghost"][data-mode="dark"] {
+            --primary: #2A2622; --accent: #9A9188; --surface: #141311;
+            --text-main: #F5F3F0; --text-muted: #8C847D; --border: #F5F3F0;
+            --bg: #0D0C0A; --halftone: rgba(154, 145, 136, 0.05);
+            --shadow-sm: 2px 2px 0px rgba(255,255,255,0.2);
+            --shadow-md: 4px 4px 0px rgba(255,255,255,0.2);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html, body {
+            overflow-x: hidden;
+            background-color: var(--bg);
+            color: var(--text-main);
+            font-family: var(--font-sans);
+            transition: background-color 0.35s ease, color 0.35s ease;
+            scroll-behavior: smooth;
+        }
+
+        /* Halftone Pattern Background */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background-image: radial-gradient(var(--halftone) 2px, transparent 2px);
+            background-size: 16px 16px;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        /* Typography */
+        h1, h2, h3, h4, h5, h6 { font-family: var(--font-sans); font-weight: 800; color: var(--text-main); }
+        .display-text { font-family: var(--font-serif); font-style: italic; font-weight: 700; }
+        .kanji-text { font-family: var(--font-jp); font-weight: 700; }
+        p { line-height: 1.6; color: var(--text-muted); }
+
+        /* Animation Mixins */
+        @keyframes panelPop {
+            0% { transform: scale(0.92); opacity: 0; }
+            50% { transform: scale(1.02); opacity: 1; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+        @keyframes slideUp {
+            from { transform: translateY(20px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        @keyframes speedLineBurst {
+            0% { opacity: 0; transform: scale(0.8) rotate(0deg); }
+            10% { opacity: 1; transform: scale(1.05) rotate(5deg); }
+            100% { opacity: 0.8; transform: scale(1) rotate(15deg); }
+        }
+        @keyframes inkDraw {
+            from { stroke-dashoffset: 1000; }
+            to { stroke-dashoffset: 0; }
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        @keyframes heartPulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.3); }
+            100% { transform: scale(1); }
+        }
+        @keyframes shake {
+            0%, 100% { transform: rotate(0deg); }
+            25% { transform: rotate(-10deg); }
+            75% { transform: rotate(10deg); }
+        }
+
+        .animate-pop { animation: panelPop 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards; }
+        .animate-slide { animation: slideUp 0.3s ease-out forwards; }
+        .animate-float { animation: float 4s ease-in-out infinite; }
+
+        /* Disable animations if reduced motion prefers */
+        @media (prefers-reduced-motion: reduce) {
+            * { animation: none !important; transition: none !important; }
+        }
+        html[data-reduce-motion="true"] * {
+            animation: none !important; transition: none !important;
+        }
+
+        /* UI Primitives */
+        .card {
+            background-color: var(--surface);
+            border: var(--border-width) solid var(--border);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-sm);
+            padding: var(--spacing-lg);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        .card:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+        
+        .manga-panel {
+            background-color: var(--surface);
+            border: var(--border-width-thick) solid var(--border);
+            padding: var(--spacing-lg);
+            position: relative;
+            box-shadow: var(--shadow-md);
+        }
+        .manga-panel::after {
+            content: '';
+            position: absolute;
+            bottom: -8px; right: -8px;
+            width: 100%; height: 100%;
+            background-image: radial-gradient(var(--border) 2px, transparent 2px);
+            background-size: 6px 6px;
+            z-index: -1;
+            border: var(--border-width) solid var(--border);
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: var(--spacing-sm);
+            padding: var(--spacing-sm) var(--spacing-lg);
+            border: var(--border-width) solid var(--border);
+            border-radius: var(--radius-pill);
+            font-family: var(--font-sans);
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            background-color: var(--surface);
+            color: var(--text-main);
+            box-shadow: 2px 2px 0px var(--border);
+        }
+        .btn:hover {
+            transform: translateY(-1px) translateX(-1px);
+            box-shadow: 3px 3px 0px var(--border);
+        }
+        .btn:active {
+            transform: translateY(1px) translateX(1px);
+            box-shadow: 0px 0px 0px var(--border);
+        }
+        .btn-primary { background-color: var(--accent); color: #fff; }
+        
+        .pill-chip {
+            display: inline-flex;
+            align-items: center;
+            padding: 4px 12px;
+            background-color: var(--primary);
+            color: var(--text-main);
+            border-radius: var(--radius-pill);
+            font-size: 0.85rem;
+            font-weight: 600;
+            border: 1px solid var(--border);
+        }
+        .pill-chip.interactive:hover { opacity: 0.9; cursor: pointer; transform: scale(1.05); }
+
+        .input-text {
+            width: 100%;
+            padding: 12px 20px;
+            border: var(--border-width) solid var(--border);
+            border-radius: var(--radius-pill);
+            background-color: var(--surface);
+            color: var(--text-main);
+            font-family: var(--font-sans);
+            font-size: 1rem;
+            outline: none;
+            transition: box-shadow 0.2s ease;
+        }
+        .input-text:focus {
+            box-shadow: 0 0 0 4px var(--primary);
+        }
+        textarea.input-text { border-radius: var(--radius-md); resize: vertical; min-height: 120px; }
+
+        .icon-btn {
+            background: none; border: none; cursor: pointer;
+            color: var(--text-muted); transition: color 0.2s ease, transform 0.2s ease;
+            display: inline-flex; align-items: center; justify-content: center;
+            padding: 8px; border-radius: 50%;
+        }
+        .icon-btn:hover { color: var(--accent); transform: scale(1.1); background-color: var(--primary); }
+
+        .avatar {
+            width: 48px; height: 48px;
+            border-radius: 50%;
+            border: 2px solid var(--border);
+            background-color: var(--primary);
+            display: flex; align-items: center; justify-content: center;
+            overflow: hidden;
+            font-weight: 700; color: var(--text-main);
+        }
+
+        .avatar-lg { width: 80px; height: 80px; font-size: 2rem; }
+        .avatar-sm { width: 32px; height: 32px; font-size: 0.8rem; }
+
+        /* Layout Architecture */
+        .app-layout {
+            display: grid;
+            grid-template-columns: 240px 1fr 300px;
+            min-height: 100vh;
+            max-width: 1440px;
+            margin: 0 auto;
+        }
+
+        /* Sidebar Nav */
+        .sidebar {
+            padding: var(--spacing-xl) var(--spacing-md);
+            position: sticky; top: 0; height: 100vh;
+            display: flex; flex-direction: column; gap: var(--spacing-lg);
+            border-right: var(--border-width-thick) solid var(--border);
+            background-color: var(--surface);
+            z-index: var(--z-nav);
+        }
+
+        .logo-container {
+            display: flex; align-items: center; gap: 12px;
+            font-size: 1.5rem; font-family: var(--font-serif);
+            font-weight: 800; color: var(--text-main); text-decoration: none;
+        }
+        
+        .nav-menu { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+        .nav-item {
+            display: flex; align-items: center; gap: 12px;
+            padding: 12px 16px; border-radius: var(--radius-md);
+            text-decoration: none; color: var(--text-muted);
+            font-weight: 600; border: 2px solid transparent;
+            transition: all 0.2s ease;
+        }
+        .nav-item:hover { background-color: var(--primary); color: var(--text-main); }
+        .nav-item.active {
+            background-color: var(--primary); color: var(--text-main);
+            border-left: 6px solid var(--accent); border-radius: 4px var(--radius-md) var(--radius-md) 4px;
+        }
+        .nav-item svg { width: 20px; height: 20px; }
+
+        /* Main Content */
+        .main-content { padding: var(--spacing-xl); }
+        
+        .top-bar {
+            display: flex; justify-content: space-between; align-items: center;
+            margin-bottom: var(--spacing-xl); gap: var(--spacing-md);
+        }
+        
+        .search-wrapper { position: relative; flex: 1; max-width: 400px; }
+        .search-wrapper svg { position: absolute; left: 16px; top: 50%; transform: translateY(-50%); color: var(--text-muted); }
+        .search-input { padding-left: 48px; }
+
+        .top-actions { display: flex; align-items: center; gap: var(--spacing-md); }
+
+        /* Right Panel */
+        .right-panel {
+            padding: var(--spacing-xl) var(--spacing-md);
+            position: sticky; top: 0; height: 100vh;
+            border-left: var(--border-width) solid var(--border);
+            display: flex; flex-direction: column; gap: var(--spacing-xl);
+            background-color: var(--surface);
+        }
+
+        /* Sections Containers */
+        .view-section { display: none; opacity: 0; transition: opacity 0.3s; }
+        .view-section.active { display: block; opacity: 1; animation: panelPop 0.4s ease forwards; }
+
+        /* Cards */
+        .feed-grid { display: flex; flex-direction: column; gap: var(--spacing-lg); }
+        .q-card {
+            display: flex; flex-direction: column; gap: var(--spacing-sm);
+        }
+        .q-meta { display: flex; align-items: center; justify-content: space-between; }
+        .q-author { display: flex; align-items: center; gap: var(--spacing-sm); font-size: 0.9rem; font-weight: 600; }
+        .q-title { font-size: 1.5rem; cursor: pointer; transition: color 0.2s; }
+        .q-title:hover { color: var(--accent); }
+        .q-excerpt { font-size: 1rem; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+        .q-stats { display: flex; gap: var(--spacing-md); font-size: 0.9rem; color: var(--text-muted); font-weight: 600; align-items: center; margin-top: var(--spacing-sm); }
+        .stat-item { display: flex; align-items: center; gap: 4px; }
+
+        /* Responsive Design */
+        .mobile-nav, .hamburger-btn, .close-drawer-btn { display: none; }
+
+        @media (max-width: 1023px) {
+            .app-layout { grid-template-columns: 200px 1fr; }
+            .right-panel { display: none; } /* Hide right panel on tablet, make it a drawer or inline later */
+        }
+        @media (max-width: 767px) {
+            .app-layout { grid-template-columns: 1fr; padding-bottom: 80px; }
+            .sidebar {
+                position: fixed; top: 0; left: -100%; width: 280px; z-index: var(--z-modal);
+                transition: left 0.3s ease; box-shadow: var(--shadow-lg);
+            }
+            .sidebar.open { left: 0; }
+            .main-content { padding: var(--spacing-md); }
+            
+            .hamburger-btn { display: block; }
+            .close-drawer-btn { display: block; align-self: flex-end; }
+            
+            /* Bottom Sticky Nav */
+            .mobile-nav {
+                display: flex; justify-content: space-around; align-items: center;
+                position: fixed; bottom: 0; left: 0; right: 0;
+                background-color: var(--surface);
+                border-top: var(--border-width-thick) solid var(--border);
+                padding: var(--spacing-sm) 0;
+                z-index: var(--z-nav);
+            }
+            .mobile-nav-item {
+                display: flex; flex-direction: column; align-items: center;
+                gap: 4px; color: var(--text-muted); text-decoration: none;
+                font-size: 0.75rem; font-weight: 700;
+            }
+            .mobile-nav-item.active { color: var(--accent); }
+            .mobile-nav-item svg { width: 24px; height: 24px; }
+            
+            .top-bar { flex-wrap: wrap; }
+            .search-wrapper { order: 3; flex: 100%; max-width: 100%; margin-top: var(--spacing-sm); }
+            
+            .q-title { font-size: 1.25rem; }
+        }
+
+        /* Hero / Landing */
+        .hero-section {
+            text-align: center; padding: 6vw 2vw; position: relative;
+            border-bottom: var(--border-width-thick) solid var(--border);
+            margin-bottom: var(--spacing-xl);
+            background: radial-gradient(circle at center, var(--primary) 0%, transparent 70%);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+        }
+        .hero-section::before {
+            content: ''; position: absolute; inset: 0;
+            background-image: repeating-linear-gradient(45deg, transparent, transparent 10px, var(--halftone) 10px, var(--halftone) 20px);
+            z-index: 0; pointer-events: none; opacity: 0.5;
+        }
+        .hero-content { position: relative; z-index: 1; }
+        .hero-title { font-size: clamp(2.5rem, 6vw, 4.5rem); line-height: 1.1; margin-bottom: var(--spacing-md); }
+        .hero-subtitle { font-size: clamp(1.2rem, 2vw, 1.5rem); margin-bottom: var(--spacing-xl); max-width: 600px; margin-inline: auto;}
+        
+        .floating-panels {
+            display: flex; justify-content: center; gap: var(--spacing-lg); margin-top: var(--spacing-xl);
+            flex-wrap: wrap; pointer-events: none;
+        }
+        .float-panel {
+            background: var(--surface); padding: var(--spacing-md); border: 2px solid var(--border);
+            border-radius: var(--radius-md); box-shadow: var(--shadow-sm);
+            transform: rotate(-3deg); transform-origin: center;
+            max-width: 200px; text-align: left; opacity: 0.8;
+            font-size: 0.85rem; font-weight: 600;
+        }
+        .float-panel:nth-child(even) { transform: rotate(4deg) translateY(20px); }
+
+        /* Modals & Overlays */
+        .modal-overlay {
+            position: fixed; inset: 0; background: rgba(0,0,0,0.6);
+            z-index: var(--z-overlay); display: none;
+            backdrop-filter: blur(4px); align-items: center; justify-content: center;
+            padding: var(--spacing-md);
+        }
+        .modal-overlay.active { display: flex; }
+        .modal-content {
+            background: var(--surface); border: var(--border-width-thick) solid var(--border);
+            border-radius: var(--radius-lg); padding: var(--spacing-xl);
+            width: 100%; max-width: 700px; max-height: 90vh; overflow-y: auto;
+            position: relative; box-shadow: var(--shadow-lg);
+            animation: slideUp 0.3s ease;
+        }
+        .modal-close {
+            position: absolute; top: var(--spacing-md); right: var(--spacing-md);
+        }
+
+        /* Detail View */
+        .detail-view { max-width: 800px; margin: 0 auto; }
+        .d-header { margin-bottom: var(--spacing-lg); border-bottom: 2px solid var(--border); padding-bottom: var(--spacing-lg); }
+        .d-title { font-size: 2rem; margin-bottom: var(--spacing-md); }
+        .d-body { font-size: 1.1rem; margin-bottom: var(--spacing-lg); white-space: pre-wrap; }
+        
+        .answers-header { display: flex; justify-content: space-between; align-items: center; margin: var(--spacing-xl) 0 var(--spacing-md); }
+        .answer-card { display: flex; gap: var(--spacing-md); margin-bottom: var(--spacing-lg); }
+        .answer-votes { display: flex; flex-direction: column; align-items: center; gap: 4px; }
+        .answer-content-wrap { flex: 1; border: var(--border-width) solid var(--border); border-radius: var(--radius-md); box-shadow: var(--shadow-sm); padding: var(--spacing-md); background: var(--surface); }
+        .answer-meta { display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--spacing-sm); border-bottom: 1px solid var(--border); padding-bottom: var(--spacing-sm);}
+        .answer-body { white-space: pre-wrap; font-size: 1.05rem; margin-bottom: var(--spacing-md);}
+        .answer-actions { display: flex; gap: var(--spacing-sm); }
+        .best-answer-badge { display: inline-flex; align-items: center; gap: 4px; color: #D4A017; font-weight: 800; font-size: 0.85rem; border: 1px solid currentColor; padding: 2px 8px; border-radius: 12px; }
+        .answer-card.is-best .answer-content-wrap { border-color: #D4A017; border-width: 3px; box-shadow: 4px 4px 0px rgba(212, 160, 23, 0.3); }
+
+        /* Write Answer / Post Modal Elements */
+        .rich-editor { border: var(--border-width) solid var(--border); border-radius: var(--radius-md); overflow: hidden; }
+        .rich-toolbar { display: flex; gap: 4px; padding: 8px; border-bottom: var(--border-width) solid var(--border); background: var(--primary); overflow-x: auto;}
+        .rich-toolbar button { padding: 4px 8px; font-weight: bold; background: var(--surface); border: 1px solid var(--border); border-radius: 4px; cursor: pointer; }
+        .rich-textarea { width: 100%; min-height: 150px; padding: 12px; border: none; outline: none; font-family: var(--font-sans); background: var(--surface); color: var(--text-main); font-size: 1rem; resize: vertical; }
+        .rich-preview { padding: 12px; background: var(--bg); min-height: 150px; display: none; white-space: pre-wrap; }
+
+        .template-carousel { display: flex; gap: var(--spacing-sm); overflow-x: auto; padding-bottom: 8px; margin-bottom: var(--spacing-md); }
+        .template-pill { flex: 0 0 auto; border: 1px solid var(--border); padding: 8px 16px; border-radius: var(--radius-pill); cursor: pointer; font-size: 0.85rem; font-weight: 600; white-space: nowrap; transition: all 0.2s; }
+        .template-pill:hover { background: var(--primary); }
+
+        .toggle-switch { display: inline-flex; align-items: center; gap: 8px; cursor: pointer; }
+        .toggle-slider { width: 44px; height: 24px; background: var(--border); border-radius: var(--radius-pill); position: relative; transition: 0.3s; }
+        .toggle-slider::after { content: ''; position: absolute; top: 2px; left: 2px; width: 20px; height: 20px; background: var(--surface); border-radius: 50%; transition: 0.3s;}
+        .toggle-input { display: none; }
+        .toggle-input:checked + .toggle-slider { background: var(--accent); }
+        .toggle-input:checked + .toggle-slider::after { transform: translateX(20px); }
+
+        /* Toast Notifications */
+        #toast-container { position: fixed; bottom: 80px; right: 24px; display: flex; flex-direction: column; gap: 8px; z-index: var(--z-toast); }
+        @media (min-width: 768px) { #toast-container { bottom: 24px; } }
+        .toast {
+            background: var(--surface); border: var(--border-width-thick) solid var(--border);
+            padding: 12px 20px; border-radius: var(--radius-lg); font-weight: 700;
+            box-shadow: var(--shadow-sm); display: flex; align-items: center; gap: 12px;
+            animation: slideUp 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative; overflow: hidden;
+        }
+        .toast::before { /* Speech bubble tail */
+            content: ''; position: absolute; bottom: -6px; left: 20px;
+            width: 12px; height: 12px; background: var(--surface);
+            border-bottom: var(--border-width-thick) solid var(--border);
+            border-right: var(--border-width-thick) solid var(--border);
+            transform: rotate(45deg);
+        }
+        .toast.success { border-color: #2E8B57; color: #2E8B57; }
+        .toast.error { border-color: #D1495B; color: #D1495B; }
+        .toast.hiding { animation: popOut 0.3s ease forwards; }
+        @keyframes popOut { to { opacity: 0; transform: scale(0.8) translateY(20px); } }
+
+        /* Tags Input */
+        .tags-input-wrap { display: flex; flex-wrap: wrap; gap: 8px; padding: 8px; border: var(--border-width) solid var(--border); border-radius: var(--radius-md); background: var(--surface); }
+        .tags-input-wrap input { border: none; outline: none; background: transparent; flex: 1; min-width: 100px; color: var(--text-main); font-family: var(--font-sans); }
+        .tag-pill { display: inline-flex; align-items: center; gap: 4px; background: var(--primary); padding: 4px 8px; border-radius: var(--radius-pill); font-size: 0.8rem; font-weight: bold; border: 1px solid var(--border); }
+        .tag-pill button { background: none; border: none; cursor: pointer; font-weight: bold; color: inherit; }
+
+        /* Categories Grid */
+        .category-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: var(--spacing-lg); }
+        .cat-card { text-align: center; display: flex; flex-direction: column; align-items: center; gap: var(--spacing-sm); cursor: pointer; }
+        .cat-icon { width: 64px; height: 64px; border-radius: 50%; background: var(--primary); display: flex; align-items: center; justify-content: center; border: 2px solid var(--border); font-size: 1.5rem; transition: transform 0.2s; }
+        .cat-card:hover .cat-icon { transform: scale(1.1); box-shadow: var(--shadow-sm); }
+        
+        /* Profile Layout */
+        .profile-header { display: flex; gap: var(--spacing-xl); align-items: center; margin-bottom: var(--spacing-xl); flex-wrap: wrap;}
+        .profile-stats { display: flex; gap: var(--spacing-lg); margin-top: var(--spacing-md); }
+        .profile-stat-box { text-align: center; border: 2px solid var(--border); padding: 12px 24px; border-radius: var(--radius-md); background: var(--surface); box-shadow: var(--shadow-sm); }
+        .stat-num { font-size: 1.5rem; font-weight: 800; font-family: var(--font-serif); }
+        
+        /* Tabs */
+        .tabs-nav { display: flex; gap: var(--spacing-md); border-bottom: 2px solid var(--border); margin-bottom: var(--spacing-lg); overflow-x: auto;}
+        .tab-btn { background: none; border: none; padding: 12px 24px; font-weight: 700; font-family: var(--font-sans); color: var(--text-muted); cursor: pointer; border-bottom: 4px solid transparent; transition: all 0.2s; white-space: nowrap;}
+        .tab-btn:hover { color: var(--text-main); }
+        .tab-btn.active { color: var(--accent); border-bottom-color: var(--accent); }
+        .tab-content { display: none; }
+        .tab-content.active { display: block; animation: panelPop 0.3s; }
+
+        /* Empty State */
+        .empty-state { text-align: center; padding: var(--spacing-2xl) var(--spacing-md); color: var(--text-muted); }
+        .empty-state svg { width: 120px; height: 120px; opacity: 0.5; margin-bottom: var(--spacing-md); }
+
+        /* Footers / Collophon */
+        .colophon { text-align: center; padding: var(--spacing-xl) 0; font-size: 0.85rem; color: var(--text-muted); font-weight: 600; border-top: 2px solid var(--border); margin-top: var(--spacing-2xl); }
+        
+        /* Markdown / HTML content styles inside details */
+        .html-content h1, .html-content h2, .html-content h3 { margin: 1em 0 0.5em; }
+        .html-content p { margin-bottom: 1em; }
+        .html-content code { background: var(--bg); padding: 2px 6px; border-radius: 4px; font-family: monospace; border: 1px solid var(--border); }
+        .html-content pre { background: var(--bg); padding: 12px; border-radius: var(--radius-md); border: 1px solid var(--border); overflow-x: auto; margin-bottom: 1em; }
+        .html-content blockquote { border-left: 4px solid var(--accent); padding-left: 12px; margin-left: 0; color: var(--text-muted); font-style: italic;}
+        .html-content ul, .html-content ol { margin-left: 24px; margin-bottom: 1em; }
+
+        /* Auth UI */
+        .auth-container { max-width: 400px; margin: 2rem auto; }
+        .auth-form { display: flex; flex-direction: column; gap: var(--spacing-md); }
+        
+        /* Utilities */
+        .hidden { display: none !important; }
+        .fade-in { animation: panelPop 0.3s forwards; }
+        .mr-2 { margin-right: 8px; } .mb-2 { margin-bottom: 8px; } .mt-4 { margin-top: 16px; }
+        .w-full { width: 100%; } .text-center { text-align: center; }
+        .text-accent { color: var(--accent); } .font-bold { font-weight: bold; }
+        .flex { display: flex; } .justify-between { justify-content: space-between; } .align-center { align-items: center; }
+        .gap-2 { gap: 8px; } .gap-4 { gap: 16px; }
+
+        /* Loader */
+        .loader {
+            display: inline-block; width: 40px; height: 40px;
+            border: 4px solid var(--border); border-top-color: var(--accent);
+            border-radius: 50%; animation: spin 1s linear infinite;
+        }
+        @keyframes spin { to { transform: rotate(360deg); } }
+
+    </style>
+</head>
+<body>
+    <div id="svg-sprites" style="display: none;">
+        <svg xmlns="http://www.w3.org/2000/svg">
+            <symbol id="icon-home" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></symbol>
+            <symbol id="icon-compass" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/></symbol>
+            <symbol id="icon-grid" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="7" height="7" x="3" y="3" rx="1"/><rect width="7" height="7" x="14" y="3" rx="1"/><rect width="7" height="7" x="14" y="14" rx="1"/><rect width="7" height="7" x="3" y="14" rx="1"/></symbol>
+            <symbol id="icon-trending" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></symbol>
+            <symbol id="icon-bookmark" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m19 21-7-4-7 4V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16z"/></symbol>
+            <symbol id="icon-user" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></symbol>
+            <symbol id="icon-settings" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"/><circle cx="12" cy="12" r="3"/></symbol>
+            <symbol id="icon-search" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></symbol>
+            <symbol id="icon-bell" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></symbol>
+            <symbol id="icon-palette" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="13.5" cy="6.5" r=".5" fill="currentColor"/><circle cx="17.5" cy="10.5" r=".5" fill="currentColor"/><circle cx="8.5" cy="7.5" r=".5" fill="currentColor"/><circle cx="6.5" cy="12.5" r=".5" fill="currentColor"/><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.926 0 1.648-.746 1.648-1.688 0-.437-.18-.835-.437-1.125-.29-.289-.438-.652-.438-1.125a1.64 1.64 0 0 1 1.668-1.668h1.996c3.051 0 5.555-2.503 5.555-5.554C21.965 6.012 17.461 2 12 2z"/></symbol>
+            <symbol id="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></symbol>
+            <symbol id="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></symbol>
+            <symbol id="icon-menu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" x2="20" y1="12" y2="12"/><line x1="4" x2="20" y1="6" y2="6"/><line x1="4" x2="20" y1="18" y2="18"/></symbol>
+            <symbol id="icon-x" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></symbol>
+            <symbol id="icon-message" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 21 1.9-5.7a8.5 8.5 0 1 1 3.8 3.8z"/></symbol>
+            <symbol id="icon-heart" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></symbol>
+            <symbol id="icon-eye" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></symbol>
+            <symbol id="icon-edit" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z"/></symbol>
+            <symbol id="icon-share" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/><polyline points="16 6 12 2 8 6"/><line x1="12" x2="12" y1="2" y2="15"/></symbol>
+            <symbol id="icon-flag" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/><line x1="4" x2="4" y1="22" y2="15"/></symbol>
+            <symbol id="icon-copy" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></symbol>
+            <symbol id="icon-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></symbol>
+            <symbol id="icon-arrow-up" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 7-7 7 7"/><path d="M12 19V5"/></symbol>
+            <symbol id="icon-arrow-down" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14"/><path d="m19 12-7 7-7-7"/></symbol>
+            <symbol id="icon-crown" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m2 4 3 12h14l3-12-6 7-4-7-4 7-6-7zm3 16h14"/></symbol>
+            <symbol id="icon-bold" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 12a4 4 0 0 0 0-8H6v8"/><path d="M15 20a4 4 0 0 0 0-8H6v8Z"/></symbol>
+            <symbol id="icon-italic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" x2="10" y1="4" y2="4"/><line x1="14" x2="5" y1="20" y2="20"/><line x1="15" x2="9" y1="4" y2="20"/></symbol>
+            <symbol id="icon-code" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></symbol>
+            <symbol id="icon-list" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="8" x2="21" y1="6" y2="6"/><line x1="8" x2="21" y1="12" y2="12"/><line x1="8" x2="21" y1="18" y2="18"/><line x1="3" x2="3.01" y1="6" y2="6"/><line x1="3" x2="3.01" y1="12" y2="12"/><line x1="3" x2="3.01" y1="18" y2="18"/></symbol>
+            <symbol id="icon-quote" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21c3 0 7-1 7-8V5c0-1.25-.756-2.017-2-2H4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 1-1 2-2 2s-1 .008-1 1.031V20c0 1 0 1 1 1z"/><path d="M15 21c3 0 7-1 7-8V5c0-1.25-.757-2.017-2-2h-4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2h.75c0 2.25.25 4-2.75 4v3c0 1 0 1 1 1z"/></symbol>
+            <symbol id="icon-link" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></symbol>
+            <symbol id="icon-plus" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" x2="12" y1="5" y2="19"/><line x1="5" x2="19" y1="12" y2="12"/></symbol>
+            <symbol id="icon-ghost" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 10h.01"/><path d="M15 10h.01"/><path d="M12 2a8 8 0 0 0-8 8v12l3-3 2.5 2.5L12 19l2.5 2.5L17 19l3 3V10a8 8 0 0 0-8-8z"/></symbol>
+            <symbol id="icon-chevron-right" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></symbol>
+            <symbol id="img-logo" viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><rect x="25" y="40" width="50" height="40" rx="4"/><polygon points="20 40 50 15 80 40"/><path d="M50 15L50 5"/><path d="M45 5L55 5"/><path d="M50 50L50 65"/><line x1="10" y1="20" x2="30" y2="35"/><line x1="90" y1="20" x2="70" y2="35"/><line x1="5" y1="50" x2="20" y2="50"/><line x1="95" y1="50" x2="80" y2="50"/></symbol>
+            <symbol id="img-empty" viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="100" cy="100" r="90" />
+                <path d="M 60 80 Q 70 70 80 80" />
+                <path d="M 120 80 Q 130 70 140 80" />
+                <path d="M 80 140 Q 100 120 120 140" />
+                <path d="M 160 50 L 180 70 M 180 50 L 160 70" />
+            </symbol>
+        </svg>
+    </div>
+    
+    <div id="app-root">
+        <div class="app-layout">
+            <!-- Sidebar -->
+            <aside class="sidebar" id="sidebar">
+                <a href="#home" class="logo-container" onclick="app.navigate('home')">
+                    <svg width="32" height="32" stroke="var(--border)"><use href="#img-logo"></use></svg>
+                    CuriosityCabin
+                </a>
+                
+                <nav class="nav-menu">
+                    <a href="#home" class="nav-item active" data-nav="home">
+                        <svg><use href="#icon-home"></use></svg> Home
+                    </a>
+                    <a href="#explore" class="nav-item" data-nav="explore">
+                        <svg><use href="#icon-compass"></use></svg> Explore
+                    </a>
+                    <a href="#categories" class="nav-item" data-nav="categories">
+                        <svg><use href="#icon-grid"></use></svg> Categories
+                    </a>
+                    <a href="#trending" class="nav-item" data-nav="trending">
+                        <svg><use href="#icon-trending"></use></svg> Trending
+                    </a>
+                    <a href="#bookmarks" class="nav-item" data-nav="bookmarks">
+                        <svg><use href="#icon-bookmark"></use></svg> Bookmarks
+                    </a>
+                    <a href="#profile" class="nav-item" data-nav="profile">
+                        <svg><use href="#icon-user"></use></svg> Profile
+                    </a>
+                    <a href="#settings" class="nav-item" data-nav="settings">
+                        <svg><use href="#icon-settings"></use></svg> Settings
+                    </a>
+                </nav>
+            </aside>
+
+            <!-- Main Content Area -->
+            <main class="main-content">
+                <div class="top-bar">
+                    <button class="hamburger-btn icon-btn" onclick="app.toggleSidebar()" aria-label="Menu">
+                        <svg width="24" height="24"><use href="#icon-menu"></use></svg>
+                    </button>
+                    
+                    <div class="search-wrapper">
+                        <svg width="20" height="20"><use href="#icon-search"></use></svg>
+                        <input type="text" id="global-search" class="input-text search-input" placeholder="Search questions, tags..." oninput="app.handleSearch(event)">
+                    </div>
+
+                    <div class="top-actions">
+                        <button class="icon-btn" onclick="app.cycleTheme()" aria-label="Change Theme" title="Theme">
+                            <svg width="24" height="24"><use href="#icon-palette"></use></svg>
+                        </button>
+                        <button class="icon-btn" onclick="app.toggleMode()" aria-label="Toggle Dark Mode" title="Dark/Light Mode">
+                            <svg width="24" height="24" id="mode-icon"><use href="#icon-moon"></use></svg>
+                        </button>
+                        <button class="icon-btn" onclick="app.openNotifications()" aria-label="Notifications">
+                            <svg width="24" height="24"><use href="#icon-bell"></use></svg>
+                        </button>
+                        
+                        <!-- Guest Auth State -->
+                        <div id="auth-header-btn">
+                            <button class="btn btn-primary" onclick="app.showAuthModal()">Guest Login</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sections Container -->
+                <div id="sections-container">
+                    <!-- Home Section -->
+                    <section id="sec-home" class="view-section active">
+                        <div class="hero-section">
+                            <div class="hero-content">
+                                <h1 class="hero-title">Ask everything. <span class="display-text">Know anything.</span></h1>
+                                <p class="hero-subtitle">CuriosityCabin is your manga-inspired sanctuary for exploring the world's most intriguing questions.</p>
+                                <div class="flex gap-4 justify-center">
+                                    <button class="btn btn-primary" onclick="app.navigate('explore')">Start Exploring</button>
+                                    <button class="btn" style="background:#1C1A18;color:#F5F3F0;" onclick="app.openAskModal()">
+                                        <svg width="20" height="20"><use href="#icon-ghost"></use></svg> Ask Anonymously
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="floating-panels">
+                                <div class="float-panel animate-float" style="animation-delay: 0s;">What is the observer effect?</div>
+                                <div class="float-panel animate-float" style="animation-delay: 1s;">History of Matcha?</div>
+                                <div class="float-panel animate-float" style="animation-delay: 2s;">Why do we dream?</div>
+                            </div>
+                        </div>
+                        
+                        <div class="flex justify-between align-center mb-2">
+                            <h2>Your Feed</h2>
+                            <button class="btn" onclick="app.openAskModal()"><svg width="16" height="16"><use href="#icon-plus"></use></svg> Ask</button>
+                        </div>
+                        <div id="home-feed" class="feed-grid">
+                            <!-- Cards injected via JS -->
+                        </div>
+                    </section>
+                    
+                    <!-- Detail View Section -->
+                    <section id="sec-detail" class="view-section">
+                        <div class="detail-view">
+                            <button class="btn mb-2" onclick="window.history.back()"><svg width="18" height="18"><use href="#icon-chevron-right" transform="rotate(180)"></use></svg> Back</button>
+                            <div id="detail-question-container" class="manga-panel">
+                                <!-- Injected via JS -->
+                            </div>
+                            
+                            <div class="answers-header">
+                                <h3 id="detail-answer-count" class="font-bold">0 Answers</h3>
+                                <div id="answer-sort-toggles">
+                                    <span class="pill-chip interactive" onclick="app.renderAnswers('top')">Top Rated</span>
+                                    <span class="pill-chip interactive" style="background:var(--surface)" onclick="app.renderAnswers('newest')">Newest</span>
+                                </div>
+                            </div>
+                            
+                            <div id="detail-answers-container">
+                                <!-- Answers injected via JS -->
+                            </div>
+                            
+                            <div class="manga-panel mt-4">
+                                <h3>Write an Answer</h3>
+                                <div class="template-carousel mt-4">
+                                    <label class="toggle-switch">
+                                        <input type="checkbox" id="answer-anon-toggle" class="toggle-input">
+                                        <div class="toggle-slider"></div>
+                                        <span class="font-bold">Post Anonymously</span>
+                                    </label>
+                                </div>
+                                <div class="rich-editor">
+                                    <div class="rich-toolbar">
+                                        <button onclick="app.formatText('bold')" aria-label="Bold"><svg width="16" height="16"><use href="#icon-bold"></use></svg></button>
+                                        <button onclick="app.formatText('italic')" aria-label="Italic"><svg width="16" height="16"><use href="#icon-italic"></use></svg></button>
+                                        <button onclick="app.formatText('insertUnorderedList')" aria-label="List"><svg width="16" height="16"><use href="#icon-list"></use></svg></button>
+                                        <button onclick="app.wrapText('`', '`')" aria-label="Code"><svg width="16" height="16"><use href="#icon-code"></use></svg></button>
+                                        <button onclick="app.wrapText('> ', '')" aria-label="Quote"><svg width="16" height="16"><use href="#icon-quote"></use></svg></button>
+                                        <button onclick="app.togglePreview('answer')" class="ml-auto">Preview</button>
+                                    </div>
+                                    <textarea id="answer-body-input" class="rich-textarea" placeholder="Share your knowledge..."></textarea>
+                                    <div id="answer-body-preview" class="rich-preview html-content"></div>
+                                </div>
+                                <div class="flex justify-between align-center mt-4">
+                                    <button class="btn btn-primary" onclick="app.submitAnswer()">Post Answer</button>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Explore & Search Section -->
+                    <section id="sec-explore" class="view-section">
+                        <h2>Explore Questions</h2>
+                        <div id="explore-results" class="feed-grid mt-4">
+                             <!-- Search results -->
+                        </div>
+                    </section>
+
+                    <!-- Categories Section -->
+                    <section id="sec-categories" class="view-section">
+                        <h2>Categories</h2>
+                        <div class="category-grid mt-4" id="categories-grid">
+                            <!-- Injected by JS -->
+                        </div>
+                    </section>
+
+                    <!-- Profile Section -->
+                    <section id="sec-profile" class="view-section">
+                        <div id="profile-container">
+                            <!-- Injected by JS -->
+                        </div>
+                    </section>
+                </div>
+            </main>
+
+            <!-- Optional Right Panel (Trending / Ads etc) -->
+            <aside class="right-panel">
+                <div class="manga-panel">
+                    <h3 class="mb-2">Trending Templates</h3>
+                    <div class="flex" style="flex-direction: column; gap: 8px;" id="right-trending">
+                        <!-- JS inject -->
+                    </div>
+                </div>
+                
+                <div class="manga-panel" style="border-color: var(--primary);">
+                    <h3 class="mb-2 flex align-center gap-2"><svg width="20" height="20" stroke="var(--primary)"><use href="#icon-ghost"></use></svg> Unanswered</h3>
+                    <div id="right-unanswered" style="font-size: 0.9rem;">
+                        <!-- JS inject -->
+                    </div>
+                </div>
+                
+                <footer class="colophon">
+                    Made with love by Rahul Shah<br>
+                    <svg width="20" height="20" stroke="var(--accent)"><use href="#icon-heart"></use></svg>
+                </footer>
+            </aside>
+            
+            <!-- Mobile Bottom Nav -->
+            <nav class="mobile-nav">
+                <a href="#home" class="mobile-nav-item active" data-nav="home">
+                    <svg><use href="#icon-home"></use></svg> Home
+                </a>
+                <a href="#explore" class="mobile-nav-item" data-nav="explore">
+                    <svg><use href="#icon-search"></use></svg> Explore
+                </a>
+                <a href="#" class="mobile-nav-item text-accent" onclick="app.openAskModal(); return false;">
+                    <svg><use href="#icon-plus"></use></svg> Ask
+                </a>
+                <a href="#" class="mobile-nav-item" onclick="app.openNotifications(); return false;">
+                    <svg><use href="#icon-bell"></use></svg> Alerts
+                </a>
+                <a href="#profile" class="mobile-nav-item" data-nav="profile">
+                    <svg><use href="#icon-user"></use></svg> Profile
+                </a>
+            </nav>
+        </div>
+
+        <!-- Ask Question Modal -->
+        <div id="ask-modal" class="modal-overlay">
+            <div class="modal-content manga-panel">
+                <button class="icon-btn modal-close" onclick="app.closeAskModal()"><svg width="24" height="24"><use href="#icon-x"></use></svg></button>
+                <h2 class="mb-2">Ask a Question</h2>
+                
+                <div class="template-carousel mb-2" id="ask-templates">
+                    <!-- Templates JS -->
+                </div>
+                
+                <input type="text" id="ask-title" class="input-text mb-2" placeholder="What's your question? Be specific.">
+                
+                <div class="mb-2 flex gap-2" style="flex-wrap: wrap;" id="ask-category-select">
+                    <!-- Categories appended here -->
+                </div>
+                
+                <div class="tags-input-wrap mb-2" id="ask-tags-container">
+                    <input type="text" id="ask-tags-input" placeholder="Add tags (press Enter)..." onkeydown="app.handleTagInput(event)">
+                </div>
+                
+                <div class="rich-editor mb-2">
+                    <div class="rich-toolbar">
+                        <button onclick="app.formatTextAsk('bold')"><svg width="16" height="16"><use href="#icon-bold"></use></svg></button>
+                        <button onclick="app.formatTextAsk('italic')"><svg width="16" height="16"><use href="#icon-italic"></use></svg></button>
+                        <button onclick="app.formatTextAsk('insertUnorderedList')"><svg width="16" height="16"><use href="#icon-list"></use></svg></button>
+                        <button onclick="app.wrapTextAsk('`', '`')"><svg width="16" height="16"><use href="#icon-code"></use></svg></button>
+                        <button onclick="app.wrapTextAsk('> ', '')"><svg width="16" height="16"><use href="#icon-quote"></use></svg></button>
+                        <button onclick="app.togglePreview('ask')" class="ml-auto">Preview</button>
+                    </div>
+                    <textarea id="ask-body" class="rich-textarea" placeholder="Provide details, context, or why you are curious..."></textarea>
+                    <div id="ask-body-preview" class="rich-preview html-content"></div>
+                </div>
+                
+                <div class="flex justify-between align-center mt-4">
+                    <label class="toggle-switch">
+                        <input type="checkbox" id="ask-anon-toggle" class="toggle-input">
+                        <div class="toggle-slider"></div>
+                        <span class="font-bold">Ask Anonymously</span>
+                    </label>
+                    <button class="btn btn-primary" onclick="app.submitQuestion()">Post Question</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Auth Modal -->
+        <div id="auth-modal" class="modal-overlay">
+            <div class="modal-content card" style="max-width: 400px; text-align: center;">
+                <button class="icon-btn modal-close" onclick="app.closeAuthModal()"><svg width="24" height="24"><use href="#icon-x"></use></svg></button>
+                <svg width="48" height="48" stroke="var(--border)" class="mb-2"><use href="#img-logo"></use></svg>
+                <h2 class="mb-2">Join the Cabin</h2>
+                <p class="mb-4">Create an account or continue as a guest to ask questions and share knowledge.</p>
+                <div class="auth-form">
+                    <input type="email" class="input-text" placeholder="Email address" disabled>
+                    <input type="password" class="input-text" placeholder="Password" disabled>
+                    <button class="btn btn-primary w-full" onclick="app.mockLogin()">Sign Up / Log In (Demo)</button>
+                    <p class="text-muted text-sm mt-2">OR</p>
+                    <button class="btn w-full" style="background:var(--primary)" onclick="app.guestLogin()">Continue as Guest</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Settings Settings Panel inside Main container -->
+        <section id="sec-settings" class="view-section">
+            <div class="manga-panel" style="max-width: 800px; margin: 0 auto;">
+                <h2 class="mb-4">Settings</h2>
+                
+                <h3 class="mb-2">Themes</h3>
+                <div class="flex gap-2 mb-4" style="flex-wrap: wrap;" id="theme-swatches">
+                    <!-- Injected by JS -->
+                </div>
+                
+                <h3 class="mb-2">Accessibility</h3>
+                <label class="toggle-switch mb-4">
+                    <input type="checkbox" id="reduce-motion-toggle" class="toggle-input" onchange="app.toggleReduceMotion(this.checked)">
+                    <div class="toggle-slider"></div>
+                    <span class="font-bold">Reduce Motion</span>
+                </label>
+
+                <h3 class="mb-2">About CuriosityCabin</h3>
+                <p class="mb-4">A single-file HTML/CSS/JS application showcasing manga-inspired design and modern layout techniques. No frameworks were harmed in the making of this app.</p>
+
+                <div class="colophon mt-4">
+                    Made with love by Rahul Shah
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <!-- Toast Container -->
+    <div id="toast-container"></div>
+    
+    <script id="app-script">
+/* --- MAIN APP LOGIC --- */
+const app = {
+    currentRoute: 'home',
+    currentQuestionId: null,
+    searchDebounce: null,
+    askTags: [],
+    
+    init: () => {
+        // Apply theme/mode settings
+        document.documentElement.setAttribute('data-theme', db.theme);
+        document.documentElement.setAttribute('data-mode', db.mode);
+        document.getElementById('mode-icon').innerHTML = `<use href="#icon-${db.mode === 'light' ? 'moon' : 'sun'}"></use>`;
+        app.toggleReduceMotion(db.reduceMotion);
+        document.getElementById('reduce-motion-toggle').checked = db.reduceMotion;
+        
+        // Settings / Categories / Templates setup
+        app.renderThemeSwatches();
+        app.renderCategoriesGrid();
+        app.renderAskTemplates();
+        app.updateRightPanel();
+        app.updateAuthStateUI();
+        
+        // Router & Hash listener
+        window.addEventListener('hashchange', app.router);
+        app.router();
+        
+        // Auto-save drafts
+        setInterval(() => {
+            const title = document.getElementById('ask-title').value;
+            const body = document.getElementById('ask-body').value;
+            if (title || body) {
+                store.set('draft_ask', { title, body, tags: app.askTags, time: Date.now() });
+            }
+        }, 30000);
+        
+        // Restore draft if exists
+        const draft = store.get('draft_ask');
+        if (draft && (Date.now() - draft.time < 86400000)) {
+            document.getElementById('ask-title').value = draft.title || '';
+            document.getElementById('ask-body').value = draft.body || '';
+            app.askTags = draft.tags || [];
+            app.renderAskTags();
+        }
+    },
+    
+    router: () => {
+        let hash = window.location.hash.slice(1) || 'home';
+        const parts = hash.split('/');
+        app.currentRoute = parts[0];
+        
+        // Hide all sections
+        document.querySelectorAll('.view-section').forEach(s => s.classList.remove('active'));
+        
+        // Update Nav
+        document.querySelectorAll('.nav-item, .mobile-nav-item').forEach(n => n.classList.remove('active'));
+        const navEl = document.querySelectorAll(`[data-nav="${app.currentRoute}"]`);
+        navEl.forEach(n => n.classList.add('active'));
+        
+        // Close sidebar on mobile
+        document.getElementById('sidebar').classList.remove('open');
+        
+        if (app.currentRoute === 'q' && parts[1]) {
+            app.currentQuestionId = parts[1];
+            app.renderDetailView(parts[1]);
+            document.getElementById('sec-detail').classList.add('active');
+            window.scrollTo(0,0);
+        } else if (app.currentRoute === 'bookmarks') {
+            app.currentRoute = 'profile';
+            document.getElementById('sec-profile').classList.add('active');
+            app.renderProfile();
+            setTimeout(() => app.renderProfileTab('bookmarks'), 0);
+            document.querySelectorAll(`[data-nav="bookmarks"]`).forEach(n => n.classList.add('active'));
+            window.scrollTo(0,0);
+        } else if (app.currentRoute === 'trending') {
+            app.currentRoute = 'explore';
+            document.getElementById('sec-explore').classList.add('active');
+            app.renderExploreFeed();
+            document.querySelectorAll(`[data-nav="trending"]`).forEach(n => n.classList.add('active'));
+            window.scrollTo(0,0);
+        } else {
+            const sec = document.getElementById(`sec-${app.currentRoute}`);
+            if (sec) {
+                sec.classList.add('active');
+                if (app.currentRoute === 'home') app.renderHomeFeed();
+                if (app.currentRoute === 'explore') app.renderExploreFeed();
+                if (app.currentRoute === 'profile') app.renderProfile();
+                document.querySelectorAll(`[data-nav="${app.currentRoute}"]`).forEach(n => n.classList.add('active'));
+                window.scrollTo(0,0);
+            } else {
+                window.location.hash = 'home';
+            }
+        }
+    },
+    
+    navigate: (route) => {
+        window.location.hash = route;
+    },
+    
+    // --- UI Interactions ---
+    toggleSidebar: () => {
+        document.getElementById('sidebar').classList.toggle('open');
+    },
+    
+    cycleTheme: () => {
+        const idx = THEMES.indexOf(db.theme);
+        db.theme = THEMES[(idx + 1) % THEMES.length];
+        document.documentElement.setAttribute('data-theme', db.theme);
+        store.set('theme', db.theme);
+        app.renderThemeSwatches();
+        Utils.toast(`Theme shifted to ${db.theme}`);
+    },
+    
+    setTheme: (t) => {
+        db.theme = t;
+        document.documentElement.setAttribute('data-theme', db.theme);
+        store.set('theme', db.theme);
+        app.renderThemeSwatches();
+    },
+    
+    toggleMode: () => {
+        db.mode = db.mode === 'light' ? 'dark' : 'light';
+        document.documentElement.setAttribute('data-mode', db.mode);
+        document.getElementById('mode-icon').innerHTML = `<use href="#icon-${db.mode === 'dark' ? 'sun' : 'moon'}"></use>`;
+        store.set('mode', db.mode);
+    },
+    
+    toggleReduceMotion: (val) => {
+        db.reduceMotion = val;
+        document.documentElement.setAttribute('data-reduce-motion', val);
+        store.set('reduceMotion', val);
+    },
+    
+    // --- Auth & Users ---
+    updateAuthStateUI: () => {
+        const authBtn = document.getElementById('auth-header-btn');
+        if (db.currentUser) {
+            authBtn.innerHTML = `
+                <div class="avatar avatar-sm interactive" onclick="app.navigate('profile')">
+                    ${db.currentUser.isGuest ? '<svg width="16" height="16"><use href="#icon-ghost"></use></svg>' : db.currentUser.avatar}
+                </div>
+            `;
+        } else {
+            authBtn.innerHTML = `<button class="btn btn-primary" onclick="app.showAuthModal()">Login</button>`;
+        }
+    },
+    
+    showAuthModal: () => document.getElementById('auth-modal').classList.add('active'),
+    closeAuthModal: () => document.getElementById('auth-modal').classList.remove('active'),
+    
+    guestLogin: () => {
+        const guestId = 'g_' + Utils.generateId();
+        const guestNum = Math.floor(Math.random() * 9000) + 1000;
+        const user = {
+            id: guestId,
+            displayName: `CuriousKitsune#${guestNum}`,
+            isGuest: true,
+            avatar: '🦊',
+            bio: 'Just here to learn and explore.',
+            karma: 0,
+            joinDate: Date.now(),
+            bookmarks: []
+        };
+        db.users[guestId] = user;
+        db.currentUser = user;
+        saveDB();
+        app.updateAuthStateUI();
+        app.closeAuthModal();
+        Utils.toast(`Welcome, ${user.displayName}!`, 'success');
+        if(app.currentRoute === 'profile') app.renderProfile();
+    },
+    
+    mockLogin: () => {
+        // Just mock login as u1 for demo if no real auth hook exists
+        db.currentUser = db.users['u1'];
+        saveDB();
+        app.updateAuthStateUI();
+        app.closeAuthModal();
+        Utils.toast(`Logged in as InkMaster`, 'success');
+        if(app.currentRoute === 'profile') app.renderProfile();
+    },
+    
+    getUserData: (uid, isAnon) => {
+        if (isAnon) return { name: 'Anonymous', avatarHTML: '<svg width="24" height="24"><use href="#icon-ghost"></use></svg>' };
+        const u = db.users[uid] || { displayName: 'Unknown', avatar: '?' };
+        return { name: u.displayName, avatarHTML: u.avatar };
+    },
+
+    // --- Rendering Helpers ---
+    renderThemeSwatches: () => {
+        const c = document.getElementById('theme-swatches');
+        if(!c) return;
+        c.innerHTML = THEMES.map(t => `
+            <span class="pill-chip interactive" style="border: ${db.theme === t ? '2px solid var(--text-main)' : '1px solid var(--border)'}" onclick="app.setTheme('${t}')">
+                ${t}
+            </span>
+        `).join('');
+    },
+    
+    renderCategoryPill: (catId) => {
+        const cat = CATEGORIES.find(c => c.id === catId);
+        if(!cat) return '';
+        return `<span class="pill-chip" style="background-color: ${cat.color}40; border-color: ${cat.color}">${cat.icon} ${cat.name}</span>`;
+    },
+    
+    renderQuestionCard: (q, index) => {
+        const u = app.getUserData(q.authorId, q.isAnonymous);
+        const excerpt = q.body.replace(/[#*`>]/g, '').slice(0, 150) + '...';
+        const isBookmarked = db.currentUser && db.currentUser.bookmarks && db.currentUser.bookmarks.includes(q.id);
+        
+        return `
+            <div class="card q-card animate-pop" style="animation-delay: ${index * 60}ms" onclick="app.navigate('q/${q.id}')">
+                <div class="q-meta">
+                    ${app.renderCategoryPill(q.category)}
+                    <span class="text-muted text-sm">${Utils.formatDate(q.timestamp)}</span>
+                </div>
+                <h3 class="q-title">${Utils.escapeHTML(q.title)}</h3>
+                <p class="q-excerpt">${Utils.escapeHTML(excerpt)}</p>
+                <div class="flex justify-between align-center mt-4">
+                    <div class="q-author">
+                        <div class="avatar avatar-sm">${u.avatarHTML}</div>
+                        <span>${Utils.escapeHTML(u.name)}</span>
+                    </div>
+                    <div class="q-stats">
+                        <span class="stat-item"><svg width="16" height="16"><use href="#icon-eye"></use></svg> ${q.viewCount}</span>
+                        <span class="stat-item"><svg width="16" height="16"><use href="#icon-message"></use></svg> ${q.answerCount}</span>
+                        <span class="stat-item"><svg width="16" height="16"><use href="#icon-heart"></use></svg> ${q.upvotes}</span>
+                        <button class="icon-btn" onclick="app.toggleBookmark(event, '${q.id}')">
+                            <svg width="20" height="20" fill="${isBookmarked ? 'currentColor' : 'none'}"><use href="#icon-bookmark"></use></svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        `;
+    },
+    
+    renderHomeFeed: () => {
+        const c = document.getElementById('home-feed');
+        const sorted = [...db.questions].sort((a,b) => b.timestamp - a.timestamp);
+        c.innerHTML = sorted.map((q, i) => app.renderQuestionCard(q, i)).join('');
+    },
+    
+    renderExploreFeed: (query = '') => {
+        const c = document.getElementById('explore-results');
+        const searchInput = document.getElementById('global-search');
+        if (query) searchInput.value = query;
+        else query = searchInput.value;
+        
+        let filtered = db.questions;
+        if (query) {
+            const ql = query.toLowerCase();
+            filtered = db.questions.filter(q => 
+                q.title.toLowerCase().includes(ql) || 
+                q.body.toLowerCase().includes(ql) ||
+                q.tags.some(t => t.toLowerCase().includes(ql))
+            );
+        }
+        
+        if (filtered.length === 0) {
+            c.innerHTML = `
+                <div class="empty-state">
+                    <svg><use href="#img-empty"></use></svg>
+                    <h3>Nothing found... yet!</h3>
+                    <p class="mt-4"><button class="btn btn-primary" onclick="app.openAskModal()">Ask it!</button></p>
+                </div>
+            `;
+            return;
+        }
+        
+        c.innerHTML = filtered.map((q, i) => app.renderQuestionCard(q, i)).join('');
+    },
+    
+    renderCategoriesGrid: () => {
+        const c = document.getElementById('categories-grid');
+        c.innerHTML = CATEGORIES.map(cat => {
+            const count = db.questions.filter(q=>q.category===cat.id).length;
+            return `
+                <div class="card cat-card" style="border-color:${cat.color}" onclick="app.navigate('explore'); document.getElementById('global-search').value = '${cat.name}'; app.renderExploreFeed();">
+                    <div class="cat-icon" style="background-color:${cat.color}20; color:${cat.color}">${cat.icon}</div>
+                    <h3>${cat.name}</h3>
+                    <p>${count} questions</p>
+                </div>
+            `;
+        }).join('');
+    },
+    
+    updateRightPanel: () => {
+        const trend = document.getElementById('right-trending');
+        trend.innerHTML = TEMPLATES.slice(0,3).map(t => `<span class="pill-chip interactive" onclick="app.fillTemplate('${t.label}')">${t.label}</span>`).join('');
+        
+        const unans = document.getElementById('right-unanswered');
+        const uqs = db.questions.filter(q => q.answerCount === 0).slice(0,3);
+        if(uqs.length === 0) unans.innerHTML = 'All questions answered! Great job.';
+        else unans.innerHTML = uqs.map(q => `
+            <div style="padding:8px 0; border-bottom:1px dashed var(--border); cursor:pointer" onclick="app.navigate('q/${q.id}')">
+                <div class="font-bold mb-2">${Utils.escapeHTML(q.title)}</div>
+                <span class="text-accent">Be the first to answer →</span>
+            </div>
+        `).join('');
+    },
+
+    // --- Bookmarks ---
+    toggleBookmark: (e, qId) => {
+        e.stopPropagation();
+        if(!db.currentUser) return app.showAuthModal();
+        let bms = db.currentUser.bookmarks || [];
+        if(bms.includes(qId)) {
+            bms = bms.filter(id => id !== qId);
+            Utils.toast('Bookmark removed');
+        } else {
+            bms.push(qId);
+            Utils.toast('Added to Bookmarks', 'success');
+        }
+        db.currentUser.bookmarks = bms;
+        db.users[db.currentUser.id].bookmarks = bms;
+        saveDB();
+        
+        let q = db.questions.find(x => x.id === qId);
+        if(q) q.bookmarkCount += bms.includes(qId) ? 1 : -1;
+        
+        if (app.currentRoute === 'home') app.renderHomeFeed();
+        if (app.currentRoute === 'q') app.renderDetailView(app.currentQuestionId);
+    },
+
+    // --- Search ---
+    handleSearch: (e) => {
+        clearTimeout(app.searchDebounce);
+        app.searchDebounce = setTimeout(() => {
+            if(window.location.hash !== '#explore') window.location.hash = '#explore';
+            app.renderExploreFeed(e.target.value);
+        }, 300);
+    },
+    
+    // --- Detail View ---
+    renderDetailView: (qId) => {
+        const q = db.questions.find(x => x.id === qId);
+        if (!q) return Utils.toast('Question not found', 'error');
+        
+        if(!q.viewedThisSession) { q.viewCount++; q.viewedThisSession = true; saveDB(); }
+        
+        const c = document.getElementById('detail-question-container');
+        const u = app.getUserData(q.authorId, q.isAnonymous);
+        const isBookmarked = db.currentUser && db.currentUser.bookmarks && db.currentUser.bookmarks.includes(q.id);
+        
+        c.innerHTML = `
+            <div class="d-header">
+                <div class="flex justify-between mb-4">
+                    ${app.renderCategoryPill(q.category)}
+                    <span class="pill-chip interactive" onclick="app.copyToClipboard('${window.location.href}')"><svg width="14" height="14" class="mr-2"><use href="#icon-link"></use></svg> Share</span>
+                </div>
+                <h1 class="d-title">${Utils.escapeHTML(q.title)}</h1>
+                <div class="flex gap-2 mb-4">
+                    ${q.tags.map(t => `<span class="tag-pill">#${Utils.escapeHTML(t)}</span>`).join('')}
+                </div>
+                <div class="q-author">
+                    <div class="avatar">${u.avatarHTML}</div>
+                    <div>
+                        <div class="font-bold">${Utils.escapeHTML(u.name)}</div>
+                        <div class="text-sm text-muted">${Utils.formatDate(q.timestamp)}</div>
+                    </div>
+                </div>
+            </div>
+            <div class="d-body html-content">${Utils.markdownToHTML(q.body)}</div>
+            <div class="q-stats border-t pt-4" style="border-top:1px solid var(--border)">
+                <span class="stat-item"><svg width="18" height="18"><use href="#icon-eye"></use></svg> ${q.viewCount} views</span>
+                <button class="btn ml-auto" onclick="app.toggleBookmark(event, '${q.id}')">
+                    <svg width="20" height="20" fill="${isBookmarked ? 'currentColor' : 'none'}"><use href="#icon-bookmark"></use></svg> 
+                    ${isBookmarked ? 'Bookmarked' : 'Bookmark Target'}
+                </button>
+            </div>
+        `;
+        
+        document.getElementById('detail-answer-count').innerText = `${q.answerCount} Answer${q.answerCount!==1?'s':''}`;
+        app.renderAnswers('top');
+        
+        document.getElementById('answer-body-input').value = '';
+        document.getElementById('answer-body-preview').style.display = 'none';
+        document.getElementById('answer-body-input').style.display = 'block';
+    },
+    
+    renderAnswers: (sortStr) => {
+        const c = document.getElementById('detail-answers-container');
+        let answs = db.answers.filter(a => a.questionId === app.currentQuestionId);
+        
+        document.querySelectorAll('#answer-sort-toggles span').forEach(s => s.style.background = 'var(--surface)');
+        event && (event.target.style.background = 'var(--primary)');
+        
+        if (sortStr === 'top') {
+            answs.sort((a,b) => {
+                if(a.isBestAnswer) return -1; if(b.isBestAnswer) return 1;
+                return (b.upvotes - b.downvotes) - (a.upvotes - a.downvotes);
+            });
+        } else {
+            answs.sort((a,b) => b.timestamp - a.timestamp);
+        }
+        
+        if(answs.length === 0) {
+            c.innerHTML = '<div class="empty-state" style="padding:var(--spacing-lg)"><p>No answers yet. Be the first to share your knowledge!</p></div>';
+            return;
+        }
+        
+        const isQAuthor = db.currentUser && db.currentUser.id === db.questions.find(q=>q.id===app.currentQuestionId).authorId;
+        
+        c.innerHTML = answs.map((a, i) => {
+            const u = app.getUserData(a.authorId, a.isAnonymous);
+            let score = a.upvotes - a.downvotes;
+            return `
+                <div class="answer-card ${a.isBestAnswer ? 'is-best' : ''} animate-pop" style="animation-delay:${i*50}ms">
+                    <div class="answer-votes">
+                        <button class="icon-btn" onclick="app.voteAnswer('${a.id}', 1)"><svg width="24" height="24"><use href="#icon-arrow-up"></use></svg></button>
+                        <span class="font-bold" style="font-size:1.2rem">${score}</span>
+                        <button class="icon-btn" onclick="app.voteAnswer('${a.id}', -1)"><svg width="24" height="24"><use href="#icon-arrow-down"></use></svg></button>
+                    </div>
+                    <div class="answer-content-wrap">
+                        ${a.isBestAnswer ? '<div class="best-answer-badge mb-2"><svg width="14" height="14"><use href="#icon-crown"></use></svg> BEST ANSWER</div>' : ''}
+                        <div class="answer-meta">
+                            <div class="q-author">
+                                <div class="avatar avatar-sm">${u.avatarHTML}</div>
+                                <span>${Utils.escapeHTML(u.name)}</span>
+                            </div>
+                            <span class="text-sm text-muted">${Utils.formatDate(a.timestamp)}</span>
+                        </div>
+                        <div class="answer-body html-content" id="ans-body-${a.id}">${Utils.markdownToHTML(a.body)}</div>
+                        <div class="answer-actions mt-4 border-t pt-2" style="border-top:1px dashed var(--border)">
+                            <button class="icon-btn" onclick="app.copyText('ans-body-${a.id}')" title="Copy text"><svg width="18" height="18"><use href="#icon-copy"></use></svg></button>
+                            ${isQAuthor && !a.isBestAnswer ? `<button class="icon-btn ml-auto text-accent" onclick="app.markBestAnswer('${a.id}')" title="Mark as Best"><svg width="18" height="18"><use href="#icon-crown"></use></svg></button>` : ''}
+                        </div>
+                    </div>
+                </div>
+            `;
+        }).join('');
+    },
+    
+    // --- Actions ---
+    copyText: (elId) => {
+        const text = document.getElementById(elId).innerText;
+        navigator.clipboard.writeText(text).then(() => Utils.toast('Copied to clipboard!', 'success'));
+    },
+    copyToClipboard: (text) => {
+        navigator.clipboard.writeText(text).then(() => Utils.toast('Link copied!', 'success'));
+    },
+    
+    voteAnswer: (aid, val) => {
+        if(!db.currentUser) return app.showAuthModal();
+        let a = db.answers.find(x => x.id === aid);
+        if(val > 0) a.upvotes++; else a.downvotes++;
+        saveDB();
+        app.renderAnswers('top');
+        Utils.toast(val>0 ? 'Upvoted!' : 'Downvoted');
+    },
+    
+    markBestAnswer: (aid) => {
+        let qAns = db.answers.filter(x => x.questionId === app.currentQuestionId);
+        qAns.forEach(a => a.isBestAnswer = false);
+        db.answers.find(x => x.id === aid).isBestAnswer = true;
+        saveDB();
+        app.renderAnswers('top');
+        Utils.toast('Marked as Best Answer', 'success');
+    },
+    
+    submitAnswer: () => {
+        if(!db.currentUser) return app.showAuthModal();
+        const bodyInput = document.getElementById('answer-body-input');
+        const body = bodyInput.value.trim();
+        if(!body) return Utils.toast('Answer cannot be empty', 'error');
+        
+        const isAnon = document.getElementById('answer-anon-toggle').checked;
+        
+        const a = {
+            id: 'a_' + Utils.generateId(),
+            questionId: app.currentQuestionId,
+            body: body,
+            authorId: db.currentUser.id,
+            isAnonymous: isAnon,
+            timestamp: Date.now(),
+            upvotes: 0, downvotes: 0, isBestAnswer: false
+        };
+        db.answers.push(a);
+        
+        const q = db.questions.find(x => x.id === app.currentQuestionId);
+        q.answerCount++;
+        saveDB();
+        
+        bodyInput.value = '';
+        app.renderDetailView(app.currentQuestionId);
+        Utils.toast('Answer posted!', 'success');
+    },
+
+    // --- Ask Modal ---
+    openAskModal: () => {
+        if(!db.currentUser) return app.showAuthModal();
+        app.renderAskCategories();
+        document.getElementById('ask-modal').classList.add('active');
+    },
+    closeAskModal: () => document.getElementById('ask-modal').classList.remove('active'),
+    
+    renderAskTemplates: () => {
+        const c = document.getElementById('ask-templates');
+        c.innerHTML = TEMPLATES.map(t => `<span class="template-pill" onclick="app.fillTemplate('${t.label}')">${t.label}</span>`).join('');
+    },
+    fillTemplate: (label) => {
+        const t = TEMPLATES.find(x => x.label === label);
+        if(t) {
+            document.getElementById('ask-title').value = t.title;
+            document.getElementById('ask-body').value = t.body;
+            if(!document.getElementById('ask-modal').classList.contains('active')) app.openAskModal();
+        }
+    },
+    
+    renderAskCategories: () => {
+        const c = document.getElementById('ask-category-select');
+        c.innerHTML = CATEGORIES.map(cat => `
+            <label style="cursor:pointer">
+                <input type="radio" name="ask-cat" value="${cat.id}" class="hidden" onchange="app.selectAskCategory('${cat.id}')">
+                <span class="pill-chip" id="ask-cat-pill-${cat.id}" style="background:var(--surface); border-color:var(--text-muted)">${cat.icon} ${cat.name}</span>
+            </label>
+        `).join('');
+    },
+    selectAskCategory: (id) => {
+        CATEGORIES.forEach(c => {
+            const p = document.getElementById('ask-cat-pill-' + c.id);
+            if(p) {
+                if(c.id === id) { p.style.background = c.color; p.style.borderColor = 'var(--border)'; }
+                else { p.style.background = 'var(--surface)'; p.style.borderColor = 'var(--text-muted)'; }
+            }
+        });
+    },
+    
+    handleTagInput: (e) => {
+        if(e.key === 'Enter') {
+            e.preventDefault();
+            const val = e.target.value.trim().replace(/^#/, '');
+            if(val && !app.askTags.includes(val) && app.askTags.length < 5) {
+                app.askTags.push(val);
+                app.renderAskTags();
+                e.target.value = '';
+            }
+        }
+    },
+    renderAskTags: () => {
+        const c = document.getElementById('ask-tags-container');
+        const input = document.getElementById('ask-tags-input');
+        c.innerHTML = app.askTags.map((t,i) => `<span class="tag-pill">#${Utils.escapeHTML(t)} <button onclick="app.removeAskTag(${i})">&times;</button></span>`).join('');
+        c.appendChild(input);
+    },
+    removeAskTag: (idx) => { app.askTags.splice(idx,1); app.renderAskTags(); },
+    
+    submitQuestion: () => {
+        const title = document.getElementById('ask-title').value.trim();
+        const body = document.getElementById('ask-body').value.trim();
+        const catInput = document.querySelector('input[name="ask-cat"]:checked');
+        const isAnon = document.getElementById('ask-anon-toggle').checked;
+        
+        if(!title || !body) return Utils.toast('Title and body required', 'error');
+        if(!catInput) return Utils.toast('Please select a category', 'error');
+        
+        const qId = 'q_' + Utils.generateId();
+        const q = {
+            id: qId,
+            title: title,
+            body: body,
+            category: catInput.value,
+            tags: app.askTags,
+            authorId: db.currentUser.id,
+            isAnonymous: isAnon,
+            timestamp: Date.now(),
+            viewCount: 0, bookmarkCount: 0, answerCount: 0, upvotes: 0
+        };
+        db.questions.push(q);
+        saveDB();
+        store.set('draft_ask', null); // clear draft
+        
+        app.closeAskModal();
+        Utils.toast('Question posted!', 'success');
+        app.navigate('q/' + qId);
+        
+        // Reset form
+        document.getElementById('ask-title').value = '';
+        document.getElementById('ask-body').value = '';
+        app.askTags = []; app.renderAskTags();
+    },
+
+    // --- Editor Formatting ---
+    formatText: (cmd) => { document.execCommand(cmd, false, null); document.getElementById('answer-body-input').focus(); },
+    wrapText: (start, end) => {
+        const ta = document.getElementById('answer-body-input');
+        const s = ta.selectionStart, e = ta.selectionEnd;
+        const val = ta.value;
+        ta.value = val.substring(0,s) + start + val.substring(s,e) + end + val.substring(e);
+        ta.focus(); ta.selectionEnd = e + start.length;
+    },
+    formatTextAsk: (cmd) => { document.execCommand(cmd, false, null); document.getElementById('ask-body').focus(); },
+    wrapTextAsk: (start, end) => {
+        const ta = document.getElementById('ask-body');
+        const s = ta.selectionStart, e = ta.selectionEnd;
+        const val = ta.value;
+        ta.value = val.substring(0,s) + start + val.substring(s,e) + end + val.substring(e);
+        ta.focus(); ta.selectionEnd = e + start.length;
+    },
+    
+    togglePreview: (context) => {
+        const ta = document.getElementById(`${context}-body`);
+        const pre = document.getElementById(`${context}-body-preview`);
+        const input = document.getElementById(`${context === 'ask' ? 'ask-body' : 'answer-body-input'}`);
+        
+        if(pre.style.display === 'block') {
+            pre.style.display = 'none';
+            input.style.display = 'block';
+        } else {
+            pre.innerHTML = Utils.markdownToHTML(input.value || '*Empty preview*');
+            input.style.display = 'none';
+            pre.style.display = 'block';
+        }
+    },
+
+    // --- Profile ---
+    renderProfile: () => {
+        const c = document.getElementById('profile-container');
+        if(!db.currentUser) {
+            c.innerHTML = `
+                <div class="empty-state">
+                    <h3>You are not logged in</h3>
+                    <button class="btn btn-primary mt-4" onclick="app.showAuthModal()">Join the Cabin</button>
+                </div>`;
+            return;
+        }
+        
+        const u = db.currentUser;
+        const uQs = db.questions.filter(x=>x.authorId === u.id);
+        const uAs = db.answers.filter(x=>x.authorId === u.id);
+        const totalUpvotes = uAs.reduce((acc, a) => acc + a.upvotes, 0);
+        
+        c.innerHTML = `
+            <div class="manga-panel mb-4">
+                <div class="profile-header">
+                    <div class="avatar avatar-lg">${u.avatar}</div>
+                    <div>
+                        <h1>${Utils.escapeHTML(u.displayName)} ${u.isGuest ? '<span class="pill-chip" style="background:#ddd;color:#333">Guest</span>' : ''}</h1>
+                        <p>${Utils.escapeHTML(u.bio)}</p>
+                        <p class="text-sm mt-2">Joined ${new Date(u.joinDate).toLocaleDateString()}</p>
+                    </div>
+                </div>
+                <div class="profile-stats">
+                    <div class="profile-stat-box"><div class="stat-num">${uQs.length}</div><div>Questions</div></div>
+                    <div class="profile-stat-box"><div class="stat-num">${uAs.length}</div><div>Answers</div></div>
+                    <div class="profile-stat-box"><div class="stat-num">${totalUpvotes}</div><div>Total Upvotes</div></div>
+                </div>
+            </div>
+            
+            <div class="tabs-nav">
+                <button class="tab-btn active">My Questions</button>
+                <button class="tab-btn">Bookmarks</button>
+            </div>
+            
+            <div class="feed-grid mt-4">
+                ${uQs.length ? uQs.map((q,i) => app.renderQuestionCard(q,i)).join('') : '<p class="text-muted">No questions asked yet.</p>'}
+            </div>
+        `;
+    },
+    
+    openNotifications: () => {
+        if(!db.currentUser) return app.showAuthModal();
+        Utils.toast('You have no new notifications.', 'info');
+    }
+};
+
+window.onload = app.init;
+
+const CURIOSITY_APP_VERSION = '1.0.0';
+
+/* --- STATE MANAGEMENT --- */
+const store = {
+    get: (key, defaultVal = null) => {
+        try {
+            const val = localStorage.getItem(`curiosity_${key}`);
+            return val ? JSON.parse(val) : defaultVal;
+        } catch (e) {
+            return defaultVal;
+        }
+    },
+    set: (key, value) => {
+        try {
+            localStorage.setItem(`curiosity_${key}`, JSON.stringify(value));
+        } catch (e) {
+            console.warn('Storage quota exceeded');
+        }
+    }
+};
+
+const THEMES = ['Sakura Ink', 'Matcha Scroll', 'Indigo Dojo', 'Yoru Neon', 'Yuzu Pop', 'Sumi Ghost'];
+const CATEGORIES = [
+    { id: 'c1', name: 'Science', icon: '⚛️', color: '#7B9EC9' },
+    { id: 'c2', name: 'Technology', icon: '💻', color: '#9B6FE8' },
+    { id: 'c3', name: 'Art & Design', icon: '🎨', color: '#E8829A' },
+    { id: 'c4', name: 'History', icon: '📜', color: '#D4A017' },
+    { id: 'c5', name: 'Philosophy', icon: '🤔', color: '#7A9E6E' },
+    { id: 'c6', name: 'Anime & Manga', icon: '🎌', color: '#F2B5C5' },
+    { id: 'c7', name: 'Nature', icon: '🌿', color: '#B5C9A1' },
+    { id: 'c8', name: 'Curiosities', icon: '🔮', color: '#5A358C' }
+];
+
+const TEMPLATES = [
+    { label: 'How does X work?', title: 'How does [topic] work?', body: 'I am curious about the mechanics behind [topic]. Can someone explain it simply?' },
+    { label: 'Difference between X and Y?', title: 'What is the difference between [X] and [Y]?', body: 'I often confuse [X] and [Y]. Could anyone break down the key differences?' },
+    { label: 'Explain X to me', title: 'Can someone explain [topic]?', body: 'I keep hearing about [topic] but don\'t fully grasp it. A simple overview would be great.' },
+    { label: 'Is X worth it?', title: 'Is [topic] worth it?', body: 'I am considering getting into [topic]. To those who have experienced it, is it worth the time/effort?' }
+];
+
+// Seed Data
+const initialQuestions = [
+    {
+        id: 'q1',
+        title: 'Why do vintage manga pages turn yellow so specifically?',
+        body: 'I was looking through an old collection of Shōnen Jump from the 90s. The paper isn\'t just aged, it has a very specific yellow/brown brittle quality. Is this a chemical process of the specific ink they used, or was it the cheap pulp paper?',
+        category: 'c6',
+        tags: ['manga', 'history', 'paper'],
+        authorId: 'u1',
+        isAnonymous: false,
+        timestamp: Date.now() - 86400000 * 2, // 2 days ago
+        viewCount: 1205,
+        bookmarkCount: 42,
+        answerCount: 2,
+        upvotes: 340
+    },
+    {
+        id: 'q2',
+        title: 'What actually happens at the event horizon of a black hole?',
+        body: 'I know time dilation occurs, but if I am an outside observer watching something fall in, do I just see it freeze there forever? Or does it eventually fade to black due to red-shifting?',
+        category: 'c1',
+        tags: ['physics', 'space'],
+        authorId: 'u2',
+        isAnonymous: true,
+        timestamp: Date.now() - 3600000 * 5, // 5 hours ago
+        viewCount: 450,
+        bookmarkCount: 12,
+        answerCount: 1,
+        upvotes: 89
+    },
+    {
+        id: 'q4',
+        title: 'Why is blue so rare in nature?',
+        body: 'I read that most blue animals (like Morpho butterflies) aren\'t actually blue pigment, but just structure. Why did nature never evolve true blue pigment for animals?',
+        category: 'c7',
+        tags: ['biology', 'nature', 'color'],
+        authorId: 'u2',
+        isAnonymous: false,
+        timestamp: Date.now() - 86400000 * 10,
+        viewCount: 1540, bookmarkCount: 88, answerCount: 0, upvotes: 320
+    },
+    { id: 'q5', title: 'How does ancient roman concrete heal itself?', body: 'I heard the Pantheon is still standing because Roman concrete can fix its own cracks. How?', category: 'c4', tags: ['history', 'engineering'], authorId: 'u1', isAnonymous: false, timestamp: Date.now() - 86400000 * 8, viewCount: 210, bookmarkCount: 4, answerCount: 0, upvotes: 45 },
+    { id: 'q6', title: 'Why do we feel a falling sensation when drifting to sleep?', body: 'Sometimes I jerk awake right as I fall asleep because I feel like I am falling. What causes this?', category: 'c1', tags: ['biology', 'sleep'], authorId: 'g_1', isAnonymous: true, timestamp: Date.now() - 4000000, viewCount: 900, bookmarkCount: 12, answerCount: 0, upvotes: 99 },
+    { id: 'q7', title: 'What makes Miyazaki films feel so nostalgic?', body: 'Even if I have never lived in Japan or the countryside, Studio Ghibli films like Totoro make me feel profound nostalgia. Is there a specific technique they use?', category: 'c6', tags: ['ghibli', 'anime', 'art'], authorId: 'u3', isAnonymous: false, timestamp: Date.now() - 5000000, viewCount: 4000, bookmarkCount: 300, answerCount: 0, upvotes: 600 },
+    { id: 'q8', title: 'Difference between UI and UX?', body: 'Explain it to me like I am 5.', category: 'c3', tags: ['design', 'tech'], authorId: 'u2', isAnonymous: false, timestamp: Date.now() - 10000000, viewCount: 1500, bookmarkCount: 30, answerCount: 0, upvotes: 110 },
+    { id: 'q9', title: 'Are there any practical uses for quantum computers right now?', body: 'We hear lots of hype, but what can a quantum computer actually do better than my PC today?', category: 'c2', tags: ['quantum', 'tech', 'compsci'], authorId: 'u1', isAnonymous: false, timestamp: Date.now() - 6000000, viewCount: 500, bookmarkCount: 8, answerCount: 0, upvotes: 60 },
+    { id: 'q10', title: 'Why is the Mona Lisa so famous?', body: 'Was it always universally acclaimed or did something happen to make it the most famous painting?', category: 'c3', tags: ['art', 'history'], authorId: 'u3', isAnonymous: false, timestamp: Date.now() - 86400000 * 20, viewCount: 800, bookmarkCount: 10, answerCount: 0, upvotes: 55 },
+    { id: 'q11', title: 'Did samurais really use Katanas as their main weapon?', body: 'In manga it\'s always swords, but I read they preferred bows or spears.', category: 'c4', tags: ['history', 'japan', 'samurai'], authorId: 'u1', isAnonymous: false, timestamp: Date.now() - 86400000 * 15, viewCount: 450, bookmarkCount: 5, answerCount: 0, upvotes: 120 },
+    { id: 'q12', title: 'What is string theory in simple terms?', body: 'I tried reading the wiki but it got too mathematical. Can anyone summarize?', category: 'c1', tags: ['physics', 'science'], authorId: 'u2', isAnonymous: false, timestamp: Date.now() - 86400000 * 2, viewCount: 600, bookmarkCount: 40, answerCount: 0, upvotes: 200 },
+    { id: 'q13', title: 'Why do cats purr?', body: 'Is it only when they are happy, or is there a survival reason?', category: 'c7', tags: ['biology', 'animals'], authorId: 'u3', isAnonymous: false, timestamp: Date.now() - 86400000 * 3, viewCount: 120, bookmarkCount: 2, answerCount: 0, upvotes: 30 },
+    { id: 'q14', title: 'How does Bluetooth work?', body: 'How does audio travel wirelessly between my phone and airpods?', category: 'c2', tags: ['tech', 'radio'], authorId: 'u1', isAnonymous: false, timestamp: Date.now() - 86400000 * 6, viewCount: 300, bookmarkCount: 10, answerCount: 0, upvotes: 50 },
+    { id: 'q15', title: 'Is free will an illusion?', body: 'If our brains are just chemical reactions following the laws of physics, do we actually make choices?', category: 'c5', tags: ['philosophy', 'free-will'], authorId: 'u2', isAnonymous: false, timestamp: Date.now() - 86400000 * 7, viewCount: 800, bookmarkCount: 60, answerCount: 0, upvotes: 150 },
+    { id: 'q16', title: 'Who built the pyramids and how?', body: 'Not looking for aliens. I want to know the current archaeological consensus on the construction methods.', category: 'c4', tags: ['history', 'egypt'], authorId: 'u3', isAnonymous: false, timestamp: Date.now() - 86400000 * 12, viewCount: 500, bookmarkCount: 20, answerCount: 0, upvotes: 80 },
+    { id: 'q17', title: 'Why does water expand when it freezes?', body: 'Almost everything else shrinks when it gets colder. Why is water different?', category: 'c1', tags: ['chemistry', 'physics'], authorId: 'u1', isAnonymous: false, timestamp: Date.now() - 86400000 * 1, viewCount: 250, bookmarkCount: 5, answerCount: 0, upvotes: 40 },
+    { id: 'q18', title: 'What is the purpose of art?', body: 'Does art need a purpose, or is existing enough?', category: 'c5', tags: ['philosophy', 'art'], authorId: 'u2', isAnonymous: false, timestamp: Date.now() - 86400000 * 4, viewCount: 400, bookmarkCount: 15, answerCount: 0, upvotes: 60 },
+    { id: 'q19', title: 'How do LLMs (like ChatGPT) actually predict the next word?', body: 'How does it go from matrices of numbers to human-sounding text?', category: 'c2', tags: ['ai', 'tech'], authorId: 'u3', isAnonymous: false, timestamp: Date.now() - 86400000 * 9, viewCount: 1100, bookmarkCount: 100, answerCount: 0, upvotes: 300 },
+    { id: 'q20', title: 'Why is the sky blue?', body: 'I know it is scattering, but why blue and not violet?', category: 'c1', tags: ['science', 'physics'], authorId: 'u1', isAnonymous: false, timestamp: Date.now() - 86400000 * 11, viewCount: 320, bookmarkCount: 12, answerCount: 0, upvotes: 75 }
+];
+
+const initialAnswers = [
+    {
+        id: 'a1',
+        questionId: 'q1',
+        body: 'It’s primarily due to the **lignin** in the paper! Cheap comic and magazine paper (pulp) retains a lot of lignin from the wood it was made from. When exposed to light and oxygen, lignin oxidises and turns yellow/brown. \n\nThis is why archival paper is "acid-free" and has the lignin removed.',
+        authorId: 'u2',
+        isAnonymous: false,
+        timestamp: Date.now() - 86400000 * 1.5,
+        upvotes: 120,
+        downvotes: 2,
+        isBestAnswer: true
+    },
+    {
+        id: 'a2',
+        questionId: 'q1',
+        body: 'Can confirm it\'s the paper. But also, old print shops used a high-acid sizing on the pages to make the ink dry faster, which accelerates the yellowing.',
+        authorId: 'anon',
+        isAnonymous: true,
+        timestamp: Date.now() - 86400000 * 1,
+        upvotes: 45,
+        downvotes: 0,
+        isBestAnswer: false
+    },
+    {
+        id: 'a3',
+        questionId: 'q2',
+        body: 'Great question. From the perspective of an outside observer, you would see the object slow down as it approaches the event horizon due to gravitational time dilation. The light emitted from the object becomes increasingly redshifted (loses energy as it climbs out of the gravity well). Eventually, the light becomes infinitely redshifted (fades to black) and you can no longer see the object.\n\nFrom the object\'s perspective, assuming it survives spaghettification, it falls straight through in a finite amount of proper time.',
+        authorId: 'u1',
+        isAnonymous: false,
+        timestamp: Date.now() - 3600000 * 2,
+        upvotes: 210,
+        downvotes: 1,
+        isBestAnswer: false
+    }
+];
+
+const initialUsers = {
+    'u1': { id: 'u1', displayName: 'InkMaster', isGuest: false, avatar: 'M', bio: 'Collector of odd facts and old ink.', karma: 540, joinDate: Date.now() - 86400000*30, bookmarks: [] },
+    'u2': { id: 'u2', displayName: 'StarGazer', isGuest: false, avatar: 'S', bio: 'Amateur astronomer.', karma: 120, joinDate: Date.now() - 86400000*10, bookmarks: [] },
+    'u3': { id: 'u3', displayName: 'CrypticFox', isGuest: false, avatar: 'F', bio: 'I like puzzles.', karma: 800, joinDate: Date.now() - 86400000*100, bookmarks: [] }
+};
+
+let db = {
+    questions: store.get('questions', initialQuestions),
+    answers: store.get('answers', initialAnswers),
+    users: store.get('users', initialUsers),
+    currentUser: store.get('currentUser', null), // null if not logged in
+    theme: store.get('theme', 'Sakura Ink'),
+    mode: store.get('mode', 'light'),
+    reduceMotion: store.get('reduceMotion', false)
+};
+
+// Auto-save DB
+const saveDB = () => {
+    store.set('questions', db.questions);
+    store.set('answers', db.answers);
+    store.set('users', db.users);
+    store.set('currentUser', db.currentUser);
+};
+
+/* --- UTILITIES --- */
+const Utils = {
+    generateId: () => Math.random().toString(36).substr(2, 9),
+    
+    escapeHTML: (str) => {
+        return str.replace(/[&<>'"]/g, tag => ({
+            '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;'
+        }[tag]));
+    },
+    
+    formatDate: (timestamp) => {
+        const diff = Date.now() - timestamp;
+        const minutes = Math.floor(diff / 60000);
+        const hours = Math.floor(minutes / 60);
+        const days = Math.floor(hours / 24);
+        
+        if (minutes < 1) return 'Just now';
+        if (minutes < 60) return `${minutes} min ago`;
+        if (hours < 24) return `${hours} hr ago`;
+        if (days < 30) return `${days} day${days > 1 ? 's' : ''} ago`;
+        return new Date(timestamp).toLocaleDateString();
+    },
+    
+    toast: (message, type = 'info') => {
+        const container = document.getElementById('toast-container');
+        const toast = document.createElement('div');
+        toast.className = `toast ${type}`;
+        
+        const icon = type === 'success' ? '#icon-check' : type === 'error' ? '#icon-x' : '#icon-bell';
+        
+        toast.innerHTML = `<svg width="20" height="20" stroke="currentColor"><use href="${icon}"></use></svg> <span>${message}</span>`;
+        if (db.reduceMotion) toast.style.animation = 'none';
+        
+        container.appendChild(toast);
+        
+        setTimeout(() => {
+            toast.classList.add('hiding');
+            setTimeout(() => toast.remove(), 300);
+        }, 3000);
+    },
+    
+    markdownToHTML: (text) => {
+        let html = Utils.escapeHTML(text);
+        // Bold
+        html = html.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+        // Italic
+        html = html.replace(/\*(.*?)\*/g, '<em>$1</em>');
+        // Code Block
+        html = html.replace(/```([\s\S]*?)```/g, '<pre><code>$1</code></pre>');
+        // Inline Code
+        html = html.replace(/`(.*?)`/g, '<code>$1</code>');
+        // Blockquote
+        html = html.replace(/^> (.*$)/gm, '<blockquote>$1</blockquote>');
+        // Line breaks
+        html = html.replace(/\n/g, '<br/>');
+        return html;
+    }
+};
+    </script>
+</body>
+</html>
